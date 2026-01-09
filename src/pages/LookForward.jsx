@@ -74,7 +74,7 @@ export default function VertexGallerySlider() {
       <div className=" mx-auto px-4">
 
         {/* ===== Heading ===== */}
-        <h3 className="text-center text-2xl md:text-4xl font-serif text-[#0a2540] mb-10 md:mb-14">
+        <h3 className="text-center text-2xl md:text-4xl font-bold text-[#0a2540] mb-10 md:mb-14">
           We look forward to serving you
         </h3>
 

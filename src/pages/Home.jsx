@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
 import homepage from "../assets/images/homepage.jpeg";
+// import homepage from "../assets/images/homepage2.jpeg";
 import slider2 from "../assets/images/slider2.jpg";
 import slider3 from "../assets/images/slider_3.jpg";
 import slider4 from "../assets/images/slider_4.jpg";
@@ -25,7 +26,7 @@ import {
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[75vh] w-full bg-[#011a41]">
+    <section className="relative h-[65vh] w-full bg-[#011a41]">
       <Swiper
         modules={[Autoplay, Navigation, Pagination, EffectFade]}
         slidesPerView={1}
