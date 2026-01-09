@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import logimage from "../../assets/images/vertexlogokalyan.webp";
 import navlogo from "../../assets/images/navlogo.png"  ;
 
@@ -46,23 +47,72 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16">
             {/* Desktop Menu */}
             <ul className="hidden lg:flex items-center gap-8 flex-1 font-bold text-white  text-xl justify-center">
-              {[
-                "Home",
-                "About Us",
-                "Services",
-                "Calculator",
-                "Extras",
-                "Sahyog Card",
-                "Skill Udaan",
-                "Contact Us",
-              ].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-white px-4 py-2 hover:text-yellow-300 transition-all duration-200 font-medium text-sm relative group"
-                  >
-                    {item}
-                  </a>
+              {(
+                [
+                  { label: "Home", to: "/" },
+                  { label: "About Us", to: "/AboutUs" },
+                  {
+                    label: "Services",
+                    sub: [
+                      { label: "Member ship", to: "/membership" },
+                      { label: "Deposit", to: "/deposits" },
+                      { label: "Loan", to: "/loans" },
+                    ],
+                  },
+                  { label: "Calculator", to: "/calculator" },
+                  {
+                    label: "Extras",
+                    sub: [
+                      { label: "SHG", to: "/shg" },
+                      { label: "GIFTS", to: "/gifts" },
+                      { label: "GALLERY", to: "/gallery" },
+                      { label: "TESTIMONIALS", to: "/testimonials" },
+                    ],
+                  },
+                  { label: "Sahyog Card", to: "/Sahyog" },
+                  { label: "Skill Udaan", to: "/skilludaan" },
+                  { label: "Contact Us", to: "/contact" },
+                ]
+              ).map((item) => (
+                <li key={item.label} className="relative group">
+                  {item.sub ? (
+                    <>
+                      <a
+                        href="#"
+                        className="text-white px-4 py-2 hover:text-yellow-300 transition-all duration-200 font-medium text-sm"
+                      >
+                        {item.label}
+                      </a>
+
+                      <div className="absolute left-0 mt-2 w-48 bg-[#011A41] rounded shadow-lg opacity-0 invisible group-hover:visible group-hover:opacity-100 transform -translate-y-2 group-hover:translate-y-0 transition-all duration-200 z-50">
+                        {item.sub.map((s) => (
+                          <Link
+                            key={s.label}
+                            to={s.to}
+                            className="block px-4 py-2 text-white text-sm hover:bg-white/5"
+                          >
+                            {s.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    item.to ? (
+                      <Link
+                        to={item.to}
+                        className="text-white px-4 py-2 hover:text-yellow-300 transition-all duration-200 font-medium text-sm"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href="#"
+                        className="text-white px-4 py-2 hover:text-yellow-300 transition-all duration-200 font-medium text-sm"
+                      >
+                        {item.label}
+                      </a>
+                    )
+                  )}
                 </li>
               ))}
             </ul>
@@ -111,34 +161,67 @@ const Navbar = () => {
               >
                 <FaTimes />
               </button>
-              {[
-                "Home",
-                "About Us",
-                "Services",
-                "Calculator",
-                "Extras",
-                "Sahyog Card",
-                "Skill Udaan",
-                "Contact Us",
-              ].map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="block text-white py-3 px-4 hover:text-yellow-300 transition-all duration-200 relative group"
-                  onClick={() => setOpen(false)}
-                >
-                  {item}
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-yellow-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
-                </a>
+              {(
+                [
+                  { label: "Home", to: "/" },
+                  { label: "About Us", to: "/AboutUs" },
+                  {
+                    label: "Services",
+                    sub: [
+                      { label: "Member ship", to: "/membership" },
+                      { label: "Deposit", to: "/deposits" },
+                      { label: "Loan", to: "/loans" },
+                    ],
+                  },
+                  { label: "Calculator", to: "/calculator" },
+                  {
+                    label: "Extras",
+                    sub: [
+                      { label: "SHG", to: "/shg" },
+                      { label: "GIFTS", to: "/gifts" },
+                      { label: "GALLERY", to: "/gallery" },
+                      { label: "TESTIMONIALS", to: "/testimonials" },
+                    ],
+                  },
+                  { label: "Sahyog Card", to: "/Sahyog" },
+                  { label: "Skill Udaan", to: "/skilludaan" },
+                  { label: "Contact Us", to: "/contact" },
+                ]
+              ).map((item) => (
+                item.sub ? (
+                  <div key={item.label} className="px-4">
+                    <div className="block text-white py-3 px-4 font-medium">{item.label}</div>
+                    {item.sub.map((s) => (
+                      <Link
+                        key={s.label}
+                        to={s.to}
+                        className="block text-white pl-6 py-2 text-sm hover:text-yellow-300 transition-all duration-200"
+                        onClick={() => setOpen(false)}
+                      >
+                        {s.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <Link
+                    key={item.label}
+                    to={item.to || '#'}
+                    className="block text-white py-3 px-4 hover:text-yellow-300 transition-all duration-200 relative group"
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                    <span className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-yellow-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
+                  </Link>
+                )
               ))}
 
               <div className="pt-6 space-y-3 border-t border-[#052041] mt-6">
-                <button className="w-full text-white border border-white/20 py-2 rounded-full hover:bg-white/5 transition-all duration-300">
+                <Link to="http://54.206.47.196/account/login" className="w-full text-white border border-white/20 py-2 rounded-full hover:bg-white/5 transition-all duration-300">
                   Login
-                </button>
-                <button className="w-full bg-linear-to-r from-yellow-400 to-orange-400 text-[#011A41] py-2 rounded-full font-semibold">
+                </Link>
+                <Link to="http://54.206.47.196/account/signup" className="w-full bg-linear-to-r from-yellow-400 to-orange-400 text-[#011A41] py-2 rounded-full font-semibold">
                   Register
-                </button>
+                </Link>
               </div>
             </div>
           </aside>
