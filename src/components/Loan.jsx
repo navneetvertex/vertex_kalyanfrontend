@@ -117,11 +117,11 @@ import { Link } from "react-router-dom";
 import LoanImage from "../assets/images/guaranteed_loan.jpg";
 
 // Popup images (replace with your real images if needed)
-import personalImg from "../assets/images/personalLoan.jpg";
+import personalImg from "../assets/images/PersonalLoan.jpg";
 import shgImg from "../assets/images/shg.png";
 import fdLoanImg from "../assets/images/FD.jpg";
-// import businessImg from "./assets/images/faq1.jpg";
 import businessImg from "../assets/images/faq1.jpg";
+
 
 const categories = [
   {
@@ -309,4 +309,3 @@ const LoanServices = () => {
 };
 
 export default LoanServices;
-
