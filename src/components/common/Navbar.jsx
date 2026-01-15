@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logimage from "../../assets/images/vertexlogokalyan.webp";
-import navlogo from "../../assets/images/navlogo.png"  ;
+import navlogo from "../../assets/images/navlogo.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [openDropdowns, setOpenDropdowns] = useState({});
+
+  const toggleDropdown = (label) => {
+    setOpenDropdowns(prev => ({
+      ...prev,
+      [label]: !prev[label]
+    }));
+  };
 
   return (
     <>
@@ -18,14 +26,18 @@ const Navbar = () => {
               <img
                 src={logimage}
                 alt="Vertex Logo"
-                className="h-20 w-30 object-contain"
+                className="h-20 w-25 object-contain bg-white"
               />
+
+              <p className="hidden md:block text-blue-800 font-bold text-2xl">
+                Vertex Kalyan Cooperative Society.Ltd
+              </p>
             </div>
 
             {/* Center Text */}
             <div className="text-center font-serif">
               <p className="text-red-500 font-bold text-lg">
-                ISO CERTIFIED | भारत सरकार मान्यता प्राप्त
+                भारत सरकार द्वारा मान्यता प्राप्त |  ISO CERTIFIED
               </p>
             </div>
 
@@ -129,7 +141,7 @@ const Navbar = () => {
 
             {/* Mobile Brand & Toggle */}
             <div className="lg:hidden flex items-center justify-between w-full">
-              <span className="text-white font-bold text-lg">Vertex Kalyan</span>
+              <span className="text-white font-bold text-lg"> Vertex Kalyan Cooperative Society.Ltd </span>
               <button
                 className="text-white p-2 rounded-lg hover:bg-white/5 transition-colors"
                 onClick={() => setOpen(!open)}
@@ -189,37 +201,58 @@ const Navbar = () => {
                 ]
               ).map((item) => (
                 item.sub ? (
-                  <div key={item.label} className="px-4">
-                    <div className="block text-white py-3 px-4 font-medium">{item.label}</div>
-                    {item.sub.map((s) => (
-                      <Link
-                        key={s.label}
-                        to={s.to}
-                        className="block text-white pl-6 py-2 text-sm hover:text-yellow-300 transition-all duration-200"
-                        onClick={() => setOpen(false)}
-                      >
-                        {s.label}
-                      </Link>
-                    ))}
+                  <div key={item.label} className="border-b border-white/10">
+                    <button
+                      onClick={() => toggleDropdown(item.label)}
+                      className="w-full flex items-center justify-between text-white py-3 px-4 font-medium hover:bg-white/5 transition-all duration-200"
+                    >
+                      <span>{item.label}</span>
+                      {openDropdowns[item.label] ? (
+                        <FaChevronUp className="text-sm" />
+                      ) : (
+                        <FaChevronDown className="text-sm" />
+                      )}
+                    </button>
+                    {openDropdowns[item.label] && (
+                      <div className="bg-[#011A41]/50">
+                        {item.sub.map((s) => (
+                          <Link
+                            key={s.label}
+                            to={s.to}
+                            className="block text-white pl-8 py-2 text-sm hover:text-yellow-300 hover:bg-white/5 transition-all duration-200"
+                            onClick={() => setOpen(false)}
+                          >
+                            {s.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <Link
                     key={item.label}
                     to={item.to || '#'}
-                    className="block text-white py-3 px-4 hover:text-yellow-300 transition-all duration-200 relative group"
+                    className="block text-white py-3 px-4 hover:text-yellow-300 hover:bg-white/5 transition-all duration-200 border-b border-white/10"
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
-                    <span className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-yellow-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
                   </Link>
                 )
               ))}
 
-              <div className="pt-6 space-y-3 border-t border-[#052041] mt-6">
-                <Link to="http://54.206.47.196/account/login" className="w-full text-white border border-white/20 py-2 rounded-full hover:bg-white/5 transition-all duration-300">
+              <div className="pt-6 px-4 space-y-3 border-t border-white/20 mt-6">
+                <Link 
+                  to="http://54.206.47.196/account/login" 
+                  className="block w-full text-center text-white border border-white/20 px-4 py-2 rounded-full hover:bg-white/5 transition-all duration-300"
+                  onClick={() => setOpen(false)}
+                >
                   Login
                 </Link>
-                <Link to="http://54.206.47.196/account/signup" className="w-full bg-linear-to-r from-yellow-400 to-orange-400 text-[#011A41] py-2 rounded-full font-semibold">
+                <Link 
+                  to="http://54.206.47.196/account/signup" 
+                  className="block w-full text-center bg-gradient-to-r from-yellow-400 to-orange-400 text-[#011A41] px-4 py-2 rounded-full font-semibold hover:from-yellow-500 hover:to-orange-500 transition-all duration-300"
+                  onClick={() => setOpen(false)}
+                >
                   Register
                 </Link>
               </div>
