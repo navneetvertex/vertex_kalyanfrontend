@@ -5,6 +5,8 @@ import DepositesSchemes from  './DepositesSchemes';
 import WeOffer from './WeOffer';
 import AboutUs from './AboutUs';
 import LookForward from './LookForward';
+import OurEvents from './OurEvents';
+import UrbanThrieft from './UrbanThrieft';
 
 
 
@@ -16,6 +18,8 @@ const HomePage = () => {
             <DepositesSchemes/>
             <WeOffer/>
             <AboutUs/>
+            <UrbanThrieft/>
+            <OurEvents/>
             <LookForward/>
         </div>
     );

@@ -9,7 +9,7 @@ const items = [
 
 export default function TextMarquee() {
   return (
-    <div className="overflow-hidden whitespace-nowrap bg-[#FFD15C] h-[83px] lg:h-[97.45px] py-4 -ml-5 -mr-5 relative z-10">
+    <div className="overflow-hidden whitespace-nowrap py-2 bg-[#FFD15C] h-10 lg:h-15  relative z-10 ">
       
       {/* Marquee Track */}
       <div className="inline-flex animate-marquee">
@@ -18,7 +18,7 @@ export default function TextMarquee() {
             key={index}
             className="flex items-center ml-10"
           >
-            <strong className="text-[30px] md:text-[38px] lg:text-[48px] font-bold leading-tight tracking-tight text-black">
+            <strong className="text-[20px] md:text-[20px] lg:text-[30px] font-bold leading-tight tracking-tight text-black">
               {text}
             </strong>
 

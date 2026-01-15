@@ -30,8 +30,8 @@ export default function DepositesSchemes() {
 
             {/* RIGHT MARQUEE */}
             <div className="md:col-span-8 space-y-4">
-              <MarqueeRow direction="left" />
-              <MarqueeRow direction="right" duration="30s" />
+              <MarqueeRow direction="left" duration="55s" />
+              <MarqueeRow direction="right" duration="65s" />
             </div>
 
           </div>
@@ -53,11 +53,11 @@ export default function DepositesSchemes() {
         .marquee {
           display: flex;
           width: max-content;
-          animation: scroll-left var(--duration, 25s) linear infinite;
+          animation: scroll-left var(--duration, 45s) linear infinite;
         }
 
         .marquee.reverse {
-          animation: scroll-right var(--duration, 25s) linear infinite;
+          animation: scroll-right var(--duration, 45s) linear infinite;
         }
       `}</style>
     </>
@@ -66,9 +66,9 @@ export default function DepositesSchemes() {
 
 /* ================= SUB COMPONENTS ================= */
 
-function MarqueeRow({ direction = "left", duration = "25s" }) {
+function MarqueeRow({ direction = "left", duration = "55s" }) {
   const images = [
-    "01","02","03","04","06","07","08","09","10","11","12","13"
+    "01", "02", "03", "04", "06", "07", "08", "09", "10", "11", "12", "13"
   ];
 
   return (
