@@ -230,7 +230,7 @@ const VertexMembershipPage = () => {
                   "px-6 py-3 rounded-full font-medium transition " +
                   (activeTab === tab
                     ? "bg-teal-900 text-white"
-                    : "text-gray-700 hover:bg-gray-200")
+                    : "text-gray-700 bg-gray-300 hover:bg-gray-200")
                 }
               >
                 {tab}

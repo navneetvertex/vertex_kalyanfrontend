@@ -54,6 +54,7 @@ const Navbar = () => {
       </div>
 
       {/* MAIN NAVIGATION */}
+      <hr className="border-0 h-0.5 bg-orange-400" />
       <nav className="w-full font-serif bg-[#203557] shadow sticky top-0 z-50">
         <div className="mx-auto px-4">
           <div className="flex items-center justify-between h-16">
